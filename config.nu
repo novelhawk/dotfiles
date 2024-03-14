@@ -878,6 +878,15 @@ def mmt [num] {
   } else {
     cmd.exe /c $"start winword.exe ($files | first)"
   }
+
+def --env ya [...args] {
+	let tmp = (mktemp -t "yazi-cwd.XXXXX")
+	yazi ...$args --cwd-file $tmp
+	let cwd = (open $tmp)
+	if $cwd != "" and $cwd != $env.PWD {
+		cd $cwd
+	}
+	rm -fp $tmp
 }
 
 source ~/.zoxide.nu
