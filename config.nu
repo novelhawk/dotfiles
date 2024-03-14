@@ -230,7 +230,7 @@ $env.config = {
     use_grid_icons: true
     footer_mode: "25" # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
-    buffer_editor: "hx" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
+    buffer_editor: "nvim" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
     use_ansi_coloring: true
     bracketed_paste: true # enable bracketed paste, currently useless on windows
     edit_mode: vi # emacs, vi
@@ -849,34 +849,6 @@ def st [path?: string] {
     git status -s -b -u
   } else {
     git status -s -b -u $path
-  }
-}
-
-def pws [] {
-  cd ci\deploy-scripts\
-  powershell
-  cd ..\..
-}
-
-def mow [num] {
-  let $files = (fd -d 1 $'($num)' Y:\MovimentoWeb\Documentazione\AnalisiProcedura | lines)
-  if ($files | length) == 0 {
-    echo "Nessun file trovato"
-  } else if ($files | length) > 1 {
-    echo $files
-  } else {
-    cmd.exe /c $"start winword.exe ($files | first)"
-  }
-}
-
-def mmt [num] {
-  let $files = (fd -d 1 $'($num)' 'Y:\MovimentoWeb\Mobility Manager Tool\Analisi funzionale' | lines)
-  if ($files | length) == 0 {
-    echo "Nessun file trovato"
-  } else if ($files | length) > 1 {
-    echo $files
-  } else {
-    cmd.exe /c $"start winword.exe ($files | first)"
   }
 }
 
