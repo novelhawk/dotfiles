@@ -1,6 +1,6 @@
 # Nushell Environment Config File
 #
-# version = "0.91.0"
+# version = "0.96.0"
 
 def create_left_prompt [] {
     let purple_bg = "\u{001b}[48;2;154;52;142m";
@@ -79,6 +79,7 @@ $env.ENV_CONVERSIONS = {
 # The default for this is $nu.default-config-dir/scripts
 $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
+    ($nu.data-dir | path join 'completions') # default home for nushell completions
 ]
 
 # Directories to search for plugin binaries when calling register
